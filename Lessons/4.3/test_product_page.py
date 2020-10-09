@@ -34,7 +34,6 @@ class TestUserAddToBasketFromProductPage:
         page.is_title_success(title)
         page.is_price_success(price)
 
-    @pytest.mark.need_review
     def test_user_cant_see_success_message(self, browser, link=LINK):
         page = ProductPage(browser, link)
         page.open()
