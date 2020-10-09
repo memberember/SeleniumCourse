@@ -4,6 +4,7 @@ from selenium.common.exceptions import NoAlertPresentException  # в начал�
 from math import log, sin
 import time
 
+
 class ProductPage(BasePage):
 
     def add_product_to_basket(self):
@@ -23,7 +24,6 @@ class ProductPage(BasePage):
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
-        # time.sleep(100)
 
     def get_product_price(self):
         price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
@@ -48,3 +48,10 @@ class ProductPage(BasePage):
     def is_success_message_disappeared(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is not disappeared"
+
+    def is_title_success(self, title):
+        assert title == self.get_title_product_title(), f'Названия продуктов  не совпадают'
+
+    def is_price_success(self, price):
+     assert price == self.get_title_product_price(), f'Цены продуктов не совпада.т'
+
